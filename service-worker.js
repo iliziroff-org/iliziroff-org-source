@@ -1,37 +1,40 @@
-const CACHE_NAME = 'iliziroff-org-v1';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './icons/icon-180.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/favicon.ico'
+const CACHE_NAME = "iliziroff-v3";
+const APP_SHELL = [
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./favicon.png",
+  "./apple-touch-icon.png",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
+self.addEventListener("install", (event) => {
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))
-    )
+    caches
+      .keys()
+      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((cached) =>
-      cached || fetch(event.request).then((response) => {
+    fetch(event.request)
+      .then((response) => {
         const copy = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         return response;
-      }).catch(() => caches.match('./index.html'))
-    )
+      })
+      .catch(() => caches.match(event.request).then((cached) => cached || caches.match("./index.html")))
   );
 });

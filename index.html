@@ -1,296 +1,264 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>iliziroff.org</title>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f4f2ec">
+    <meta name="description" content="iliziroff.org — personal links and projects.">
 
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="color-scheme" content="light" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="iliziroff" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="icons/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png" />
-  <link rel="icon" type="image/png" sizes="48x48" href="icons/icon-48.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png" />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #050505;
-      --pad-x: clamp(28px, 8vw, 98px);
-      --pad-y: clamp(28px, 5.5vh, 54px);
-    }
+    <title>iliziroff.org</title>
 
-    * {
-      box-sizing: border-box;
-    }
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
 
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      min-height: 100svh;
-      padding: var(--pad-y) var(--pad-x);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(180px, 280px);
-      grid-template-rows: auto 1fr auto;
-      column-gap: clamp(40px, 8vw, 140px);
-    }
-
-    .brand {
-      grid-column: 1;
-      grid-row: 1;
-      align-self: start;
-      font-size: 22px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.7px;
-    }
-
-    .details {
-      grid-column: 2;
-      grid-row: 2;
-      align-self: center;
-      justify-self: start;
-      width: 100%;
-      transform: translateY(-2vh);
-    }
-
-    .details-title {
-      margin: 0 0 18px;
-      font-size: 13px;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .links a {
-      position: relative;
-      font-size: 11px;
-      line-height: 1.25;
-      font-weight: 400;
-    }
-
-    .links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 1px;
-      background: currentColor;
-      transition: width 180ms ease;
-    }
-
-    .links a:hover::after,
-    .links a:focus-visible::after {
-      width: 100%;
-    }
-
-    .contact {
-      grid-column: 1 / -1;
-      grid-row: 3;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: 32px;
-      padding-bottom: clamp(8px, 1.5vh, 18px);
-    }
-
-    .contact-copy {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      margin: 0 0 clamp(20px, 3vh, 30px);
-      font-size: 9px;
-      line-height: 1;
-      font-weight: 400;
-    }
-
-    .talk {
-      margin: 0;
-      font-size: clamp(58px, 7.5vw, 94px);
-      line-height: 0.86;
-      font-weight: 400;
-      letter-spacing: -0.055em;
-      white-space: nowrap;
-    }
-
-    .arrow-link {
-      width: 74px;
-      height: 74px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 4px;
-    }
-
-    .arrow {
-      width: 62px;
-      height: 62px;
-      overflow: visible;
-    }
-
-    .arrow path {
-      stroke: var(--text);
-      stroke-width: 7;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      fill: none;
-    }
-
-    @media (max-width: 760px) {
+    <style>
       :root {
-        --pad-x: clamp(20px, 6vw, 28px);
-        --pad-y: max(22px, env(safe-area-inset-top));
+        color-scheme: light;
+        --paper: #f4f2ec;
+        --ink: #11110f;
+        --muted: #6d6b65;
+        --line: rgba(17, 17, 15, 0.2);
+        --page-pad: clamp(1.25rem, 3.2vw, 3.5rem);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        background: var(--paper);
+        scroll-behavior: smooth;
       }
 
       body {
-        min-width: 320px;
+        min-height: 100svh;
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 5px;
       }
 
       .page {
+        display: grid;
+        grid-template-rows: auto minmax(13rem, 1fr) auto;
         min-height: 100svh;
-        padding-top: max(24px, calc(env(safe-area-inset-top) + 12px));
-        padding-right: max(var(--pad-x), env(safe-area-inset-right));
-        padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 14px));
-        padding-left: max(var(--pad-x), env(safe-area-inset-left));
-        grid-template-columns: 1fr;
-        grid-template-rows: auto minmax(240px, 1fr) auto;
-        row-gap: 18px;
+        padding: max(var(--page-pad), env(safe-area-inset-top))
+          max(var(--page-pad), env(safe-area-inset-right))
+          max(var(--page-pad), env(safe-area-inset-bottom))
+          max(var(--page-pad), env(safe-area-inset-left));
       }
 
       .brand {
-        grid-column: 1;
-        grid-row: 1;
-        font-size: clamp(19px, 5.4vw, 22px);
+        display: inline-block;
+        width: fit-content;
+        font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+        font-weight: 700;
+        letter-spacing: -0.05em;
       }
 
-      .details {
-        grid-column: 1;
-        grid-row: 2;
-        align-self: center;
-        justify-self: end;
-        width: min(46vw, 190px);
-        transform: none;
-        padding-top: 2vh;
-      }
-
-      .details-title {
-        font-size: 15px;
-        margin-bottom: 16px;
-      }
-
-      .links {
-        gap: 12px;
-      }
-
-      .links a {
-        font-size: 12px;
-        line-height: 1.35;
-      }
-
-      .contact {
-        grid-column: 1;
-        grid-row: 3;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 10px;
-        padding-bottom: 0;
+      .content {
+        display: grid;
+        grid-template-columns: minmax(10rem, 0.75fr) minmax(17rem, 1.25fr);
+        align-items: center;
+        gap: clamp(2.5rem, 8vw, 10rem);
+        width: min(62rem, 100%);
+        margin: 0 auto;
+        padding: clamp(4rem, 10vh, 8rem) 0;
       }
 
       .eyebrow {
-        margin-bottom: 16px;
-        font-size: 9px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .links {
+        display: grid;
+        margin-top: 1.35rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 3.5rem;
+        border-bottom: 1px solid var(--line);
+        font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+        letter-spacing: -0.035em;
+        transition: padding 180ms ease, color 180ms ease;
+      }
+
+      .link::after {
+        content: "↗";
+        font-size: 0.85em;
+        transition: transform 180ms ease;
+      }
+
+      .link:hover {
+        padding-left: 0.45rem;
+        color: var(--muted);
+      }
+
+      .link:hover::after {
+        transform: translate(0.18rem, -0.18rem);
+      }
+
+      .intro {
+        max-width: 34rem;
+      }
+
+      .intro h1 {
+        margin: 0;
+        font-size: clamp(3.7rem, 9.2vw, 9rem);
+        font-weight: 500;
+        letter-spacing: -0.085em;
+        line-height: 0.8;
+      }
+
+      .intro p {
+        max-width: 27rem;
+        margin: clamp(2rem, 4vw, 3rem) 0 0;
+        color: var(--muted);
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+        line-height: 1.45;
+      }
+
+      .footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.5rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
       }
 
       .talk {
-        font-size: clamp(50px, 15.3vw, 78px);
-        line-height: .88;
-        white-space: nowrap;
-      }
-
-      .arrow-link {
-        width: clamp(48px, 13vw, 58px);
-        height: clamp(48px, 13vw, 58px);
-        align-self: end;
-        margin-bottom: 0;
+        font-size: clamp(1.1rem, 2vw, 1.8rem);
+        font-weight: 700;
+        letter-spacing: -0.045em;
       }
 
       .arrow {
-        width: clamp(40px, 11vw, 50px);
-        height: clamp(40px, 11vw, 50px);
+        display: inline-block;
+        font-size: clamp(2.8rem, 6vw, 5.5rem);
+        font-weight: 300;
+        line-height: 0.7;
+        transition: transform 180ms ease;
       }
-    }
 
-    @media (max-width: 390px) {
-      .details { width: min(48vw, 175px); }
-      .talk { font-size: clamp(46px, 14.6vw, 60px); }
-      .arrow-link { width: 46px; height: 46px; }
-      .arrow { width: 40px; height: 40px; }
-    }
-  </style>
-</head>
-<body>
-  <main class="page">
-    <header class="brand">iliziroff.</header>
+      .footer:hover .arrow {
+        transform: translate(0.25rem, -0.25rem);
+      }
 
-    <section class="details" aria-labelledby="me-title">
-      <h2 class="details-title" id="me-title">Me</h2>
-      <nav class="links" aria-label="Social links">
-        <a href="https://x.com/iliziroff" target="_blank" rel="noopener noreferrer">X</a>
-        <a href="https://github.com/iliziroff-org" target="_blank" rel="noopener noreferrer">Github</a>
-      </nav>
-    </section>
+      @media (max-width: 720px) {
+        .page {
+          grid-template-rows: auto 1fr auto;
+        }
 
-    <section class="contact">
-      <div class="contact-copy">
-        <p class="eyebrow">Got A Project In Mind?</p>
-        <h1 class="talk">LET'S TALK</h1>
-      </div>
+        .content {
+          grid-template-columns: 1fr;
+          align-content: center;
+          gap: 4.5rem;
+          margin: 0;
+          padding: 4rem 0 5rem;
+        }
 
-      <a
-        class="arrow-link"
-        href="https://x.com/iliziroff"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Contact iliziroff on X"
-      >
-        <svg class="arrow" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M14 50 L50 14 M25 14 H50 V39" />
-        </svg>
+        .intro {
+          grid-row: 1;
+        }
+
+        .contact {
+          grid-row: 2;
+        }
+
+        .intro h1 {
+          font-size: clamp(4.1rem, 23vw, 7rem);
+        }
+
+        .links {
+          margin-top: 1rem;
+        }
+
+        .link {
+          min-height: 3.35rem;
+          font-size: 1.15rem;
+        }
+
+        .footer {
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 370px) {
+        .intro h1 {
+          font-size: 3.65rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <a class="brand" href="/" aria-label="iliziroff.org — главная">iliziroff.</a>
+
+      <section class="content" aria-label="Основная информация">
+        <div class="contact">
+          <p class="eyebrow">Me</p>
+          <nav class="links" aria-label="Ссылки">
+            <a class="link" href="https://x.com/iliziroff" target="_blank" rel="noopener noreferrer">X</a>
+            <a class="link" href="https://github.com/iliziroff-org" target="_blank" rel="noopener noreferrer">Github</a>
+            <a class="link" href="https://ekliz.iliziroff.org">ekliz</a>
+          </nav>
+        </div>
+
+        <div class="intro">
+          <h1>hello.</h1>
+          <p>Personal space for ideas, experiments and projects.</p>
+        </div>
+      </section>
+
+      <a class="footer" href="mailto:support@iliziroff.org" aria-label="Написать на support@iliziroff.org">
+        <span class="talk">LET’S TALK</span>
+        <span class="arrow" aria-hidden="true">↗</span>
       </a>
-    </section>
-  </main>
-  <script>
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-      });
-    }
-  </script>
-</body>
+    </main>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js");
+        });
+      }
+    </script>
+  </body>
 </html>
