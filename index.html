@@ -102,24 +102,57 @@
         line-height: 0.85;
       }
 
-      a {
-        margin-top: 22px;
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .social-link {
+        position: relative;
+        padding-block: 5px;
         color: var(--muted);
-        font-size: clamp(0.78rem, 1.2vw, 0.9rem);
-        letter-spacing: 0.08em;
+        font-size: clamp(0.78rem, 1.15vw, 0.9rem);
+        letter-spacing: 0.055em;
         text-decoration: none;
-        transition: color 180ms ease;
+        transition:
+          color 180ms ease,
+          text-shadow 180ms ease;
       }
 
-      a:hover,
-      a:focus-visible {
-        color: var(--muted-hover);
+      .social-link::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #42bdff, transparent);
+        content: '';
+        transform: scaleX(0);
+        transition: transform 180ms ease;
       }
 
-      a:focus-visible {
-        border-radius: 2px;
+      .social-link:hover {
+        color: #fff;
+        text-shadow: 0 0 14px rgb(66 189 255 / 28%);
+      }
+
+      .social-link:hover::after,
+      .social-link:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .link-separator {
+        color: rgb(79 190 255 / 62%);
+        font-size: 0.78rem;
+      }
+
+      .social-link:focus-visible {
         outline: 2px solid var(--foreground);
-        outline-offset: 6px;
+        outline-offset: 4px;
       }
 
       @media (max-width: 480px) {
@@ -132,13 +165,22 @@
           margin-bottom: 26px;
         }
 
+        .social-links {
+          flex-direction: column;
+          gap: 7px;
+        }
+
+        .link-separator {
+          display: none;
+        }
+
         h1 {
           font-size: clamp(3.5rem, 20vw, 5.25rem);
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        a {
+        .social-link {
           transition: none;
         }
       }
@@ -151,12 +193,35 @@
           <img src="avatar-transparent.png" alt="" />
         </div>
         <h1>iliziroff.</h1>
-        <a
-          href="https://github.com/iliziroff"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Открыть профиль iliziroff на GitHub в новой вкладке"
-        >github.com/iliziroff</a>
+        <nav class="social-links" aria-label="Социальные ссылки">
+          <a
+            class="social-link"
+            href="https://github.com/iliziroff"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Открыть профиль iliziroff на GitHub в новой вкладке"
+          >
+            github.com/iliziroff
+          </a>
+          <span class="link-separator" aria-hidden="true">·</span>
+          <a
+            class="social-link telegram-link"
+            href="https://t.me/rosiebit"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Открыть Telegram rosiebit в новой вкладке"
+          >
+            t.me/rosiebit
+          </a>
+          <span class="link-separator" aria-hidden="true">·</span>
+          <a
+            class="social-link email-link"
+            href="mailto:support@iliziroff.org"
+            aria-label="Написать на почту support@iliziroff.org"
+          >
+            support@iliziroff.org
+          </a>
+        </nav>
       </section>
     </main>
   </body>
